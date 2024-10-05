@@ -32,12 +32,13 @@ jobs:
           npm run build 
           
       # 2. deploy
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         # 別人的actions拿來借用
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
-          token: ${{ secrets.CICD_TOKEN }} # Settings > Secret 建立的 ACCESS_TOKEN，推同個 repo 的話可以不需要
-          BASE_BRANCH: master
-          BRANCH: gh-pages # deploy 到 gh-pages 這個分支
-          FOLDER: dist # build 後的資料夾
-          SINGLE_COMMIT: true
+            ACCESS_TOKEN: ${{ secrets.CICD_TOKEN }} # Settings > Secret 建立的 ACCESS_TOKEN，推同個 repo 的話可以不需要
+            BASE_BRANCH: master
+            # GitHub Pages Specify the Orphan branch name for deployment
+            branch: gh-pages
+            # Specify the build folder path for deployment
+            FOLDER: dist
